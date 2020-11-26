@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+import './details.css'
+import { Link } from "react-router-dom";
 
 import Spinner from "../spinner";
 
@@ -11,7 +13,6 @@ function Details({match: {params: {id}}}) {
         async function  getPokDetails() {
             setIsLoading(true);
             const result = await axios(`https://pokeapi.co/api/v2/pokemon/${id}`)
-            console.log(result)
                     setPokDetails(result.data)
             setIsLoading(false);
 
@@ -23,28 +24,25 @@ function Details({match: {params: {id}}}) {
         return <div><Spinner /></div>;
     }
 
-    // useEffect(() => {
-    //     async function getPokDetails() {
-    //         const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-    //         return await result.json();
-    //     }
-    //     getPokDetails()
-    //         .then(res => setPokDetails(res.data))
-    // }, [id])
-
-
-
-
     console.log('вывод стейта',pokDetails)
+    console.log('вывод стейта!!!!',pokDetails.name)
+
 
     return (
-        <div>
-            <img src={pokDetails.sprites.front_default} alt={id}/>
-            <img src={pokDetails.sprites.back_default}/>
-            <img src={pokDetails.sprites.back_shiny}/>
-            <img src={pokDetails.sprites.front_shiny}/>
+
+        <div className="container">
+            <div className="card">
+                <h1>Name: {id}</h1>
+                <div className="img-container">
+                    <img src={pokDetails.sprites.front_default} alt={pokDetails.name} />
+                    <img src={pokDetails.sprites.back_default} alt={pokDetails.name} />
+                </div>
+                <Link to="/">Return to List View</Link>
+            </div>
         </div>
-    );
+
+  )
+
 }
 
 export default Details;

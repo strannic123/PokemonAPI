@@ -1,27 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import axios from 'axios';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
 
-import MenuNav from "./components/menu-nav";
 import Details from "./components/details";
+import FirstLimit from "./components/first-limit";
+
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 
 import './index.css';
 
+
 function App() {
 
-
-    return <div className='app-wrapper'>
-
-        <Router>
-            <Route exact path='/' component={MenuNav}/>
+    return (
+        <Router className='App'>
+            <Route exact path='/' component={FirstLimit}/>
             <Route path='/:id' component={Details}/>
-
         </Router>
-        {/*<MenuNav />*/}
-        {/*<Details/>*/}
+    )
 
-    </div>
+
 }
 
 ReactDOM.render(<App />,document.getElementById('root')

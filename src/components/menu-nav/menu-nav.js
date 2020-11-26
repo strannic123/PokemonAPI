@@ -1,7 +1,9 @@
-import React, { useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from "axios";
 import {Link} from "react-router-dom";
 import Spinner from "../spinner";
+
+import './menu-nav.css'
 
 function MenuNav() {
     const [pokemon, setPokemon] = useState([]);
@@ -10,39 +12,49 @@ function MenuNav() {
 
     useEffect(() => {
         getPokemons()
+        return (() => setPokemon([]))
     }, [])
 
 
-
-    const  getPokemons =() => {
+    async function getPokemons() {
         setLoaded(true)
-        axios.get('https://pokeapi.co/api/v2/pokemon?limit=10')
-            .then(res => {
-                // console.log(res.data);
-                setPokemon(res.data.results)})
-                setLoaded(false)
+        const res = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=10')
+                setPokemon(res.data.results);
+                setLoaded(false);
     }
 
-    if(loaded){
+    if (loaded) {
         return <div>
-            <Spinner />
+            <Spinner/>
         </div>
     }
 
 
-    return <div className='menu-nav'>
-            <ul>
-                {pokemon.map(item => {
-                    return <li
-                        key={item.name}
-                        >
-                        <Link to={item.name}>{item.name}</Link>
+    return (
+        <div className="col-md-4 col-lg-3 navbar-container bg-light">
+            <p className="navbar-brand" >Navbar</p>
+            <nav className="navbar navbar-expand-md navbar-light">
 
-                    </li>
-                })}
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
 
-            </ul>
-    </div>
+                <div className="collapse navbar-collapse" id="navbar">
+
+                    <ul className="navbar-nav d-block">
+                        {pokemon.map(item => (
+                            <li key={item.name} className="nav-item">
+                                <Link to={item.name}>{item.name}</Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    )
+
+
 }
 
 export default MenuNav;
