@@ -5,12 +5,20 @@ import './spinner.css'
 
 function Spinner() {
     return (
-        <div className="loadingio-spinner-dual-ring-jss626jf7f">
-            <div className="ldio-j83o7jdb8ue">
+        <div className="loadingio-spinner-spinner-ljijm3rmzvn">
+            <div className="ldio-8jyadbothto">
                 <div></div>
-                <div>
-                    <div></div>
-                </div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
         </div>
     );

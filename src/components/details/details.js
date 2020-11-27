@@ -24,9 +24,6 @@ function Details({match: {params: {id}}}) {
         return <div><Spinner /></div>;
     }
 
-    console.log('вывод стейта',pokDetails)
-    console.log('вывод стейта!!!!',pokDetails.name)
-
 
     return (
 
@@ -37,6 +34,10 @@ function Details({match: {params: {id}}}) {
                     <img src={pokDetails.sprites.front_default} alt={pokDetails.name} />
                     <img src={pokDetails.sprites.back_default} alt={pokDetails.name} />
                 </div>
+                <p>type: {pokDetails.types[0].type.name}</p>
+                <p>weight: {pokDetails.weight}</p>
+                <p>height: {pokDetails.height}</p>
+                <p>ability: {pokDetails.abilities[0].ability.name}</p>
                 <Link to="/">Return to List View</Link>
             </div>
         </div>

@@ -32,42 +32,22 @@ function FirstLimit() {
                 <MenuNav/>
 
                 <div className="col-md-8 col-lg-9 content-container">
-
                      <div className="container">
-                        <div className="card-deck">
+                         <h1 className='text-center mt-3 mb-3'>Pokemons </h1>
                              <ul className="list">
                                  {limitData.map((item, index) => (
-                 <li key={item.name} className="card">
-                     <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`}/>
+                 <li key={item.name} className="list-item">
+                     <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`} alt={item.name}/>
                      <Link to={item.name}>{item.name}</Link>
                     </li>
                         ))}
                         </ul>
                     </div>
-
                 </div>
-
-                </div>
-
             </div>
-
         </div>
     );
 }
 
 export default FirstLimit;
 
-// <div className="container">
-//     <div className="card-deck">
-//         <ul className="list">
-//             {limitData.map((item, index) => (
-//                 <li key={item.name} className="card">
-//                     <img
-//                         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`}/>
-//                     <Link to={item.name}>{item.name}</Link>
-//                 </li>
-//             ))}
-//         </ul>
-{/*    </div>*/}
-
-{/*</div>*/}

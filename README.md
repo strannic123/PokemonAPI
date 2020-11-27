@@ -1,3 +1,9 @@
+# Pokemon API on React Hooks(pokeapi.co)
+# Использовался React/Hooks 
+## ![Imgur](https://i.imgur.com/eb7UOOb.gif)
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

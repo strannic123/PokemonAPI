@@ -7,7 +7,9 @@ import './menu-nav.css'
 
 function MenuNav() {
     const [pokemon, setPokemon] = useState([]);
-    const [loaded, setLoaded] = useState(false)
+    const [loaded, setLoaded] = useState(false);
+    const [search, setSearch] = useState('');
+    const [filterPokemon, setFilterPokemon] = useState([])
 
 
     useEffect(() => {
@@ -15,10 +17,17 @@ function MenuNav() {
         return (() => setPokemon([]))
     }, [])
 
+    useEffect(() => {
+        setFilterPokemon(
+        pokemon.filter(item => {
+            return item.name.toLowerCase().includes(search.toLowerCase())
+        }))
+    }, [search, pokemon])
+
 
     async function getPokemons() {
         setLoaded(true)
-        const res = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=10')
+        const res = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=1000')
                 setPokemon(res.data.results);
                 setLoaded(false);
     }
@@ -32,18 +41,20 @@ function MenuNav() {
 
     return (
         <div className="col-md-4 col-lg-3 navbar-container bg-light">
-            <p className="navbar-brand" >Navbar</p>
+            <input className="form-control mr-sm-2 mb-3 mt-3"
+                   type="search"
+                   placeholder="Search Pokemon"
+                   aria-label="Search"
+                   onChange={e => setSearch(e.target.value)}/>
             <nav className="navbar navbar-expand-md navbar-light">
 
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-
                 <div className="collapse navbar-collapse" id="navbar">
-
                     <ul className="navbar-nav d-block">
-                        {pokemon.map(item => (
+                        {filterPokemon.map(item => (
                             <li key={item.name} className="nav-item">
                                 <Link to={item.name}>{item.name}</Link>
                             </li>
@@ -53,8 +64,6 @@ function MenuNav() {
             </nav>
         </div>
     )
-
-
 }
 
 export default MenuNav;
